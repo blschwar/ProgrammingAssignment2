@@ -1,0 +1,16 @@
+{
+    "contents" : "## This program supports Assignment: Caching the Inverse of a Matrix - R programming Coursera 2nd program Assignment\n## Program demonstrates how to write an R function that is able to cache potentially time consuming computations\n## This code demonstrates caching an inverse of a matrix.\n## Primary source code structure from example code - Caching the Mean of a Vector; Debug credit stackoverflow / Goggle hacking..\n\n\n## The MakeCacheMatrix itializes the variable for caching data (m); provides functions that will get set/get the value of the vector and the matrix \nMakeCacheMatrix <- function(x = matrix()) {\n        ## Establishes cache variable\n        m <- NULL\n        ## provides functions that set/get the value of matrix and inverse matrix\n                set <- function(y) {\n                        x <<- y\n                        m <<- NULL\n                }\n                \n                get <- function() x\n                setmatrix <- function(data) m <<- data\n                getmatrix <- function() m\n                \n                ## returns a list of functions in list format\n                list(set = set, get = get,\n                     setmatrix = setmatrix,\n                     getmatrix = getmatrix)\n                }\n        \n\n\n## The CacheSolve function inverses matrix X.  Prior to the potentially costly calculation of an inverse matrix it checks \n## to see if the results have previously been run and are cached in memory.  If yes it returns cached results an notification; \n## If no results are cached, it calculates inverse, stores results in cache, and returns result\n\nCacheSolve <- function(x=matrix(), ...) {\n               \n                m <- x$getmatrix()\n                ## checks to see if data has already been cached\n        \n                if(!is.null(m)) {\n                        message(\"Getting cached data\")\n                        return(m)\n                }\n                \n                else {\n                ## executes inverse if data isn't cached\n                message(\"No cached data found. Calculating...\")\n                matrix <- x$get()\n                m <- solve(matrix, ...)\n                x$setmatrix(m)\n                message(\"Finished calculation of inverse matrix\")\n                return(m)\n                }\n        }\n        \n        \n",
+    "created" : 1414333492660.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "516305502",
+    "id" : "13DCFC79",
+    "lastKnownWriteTime" : 1414337804,
+    "path" : "C:/Users/blschwar/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "source_on_save" : true,
+    "type" : "r_source"
+}
